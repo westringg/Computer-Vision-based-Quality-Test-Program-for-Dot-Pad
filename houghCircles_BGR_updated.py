@@ -1,4 +1,5 @@
 '''
+Reference
 https://076923.github.io/posts/Python-opencv-29/
 https://vmpo.tistory.com/35
 '''
@@ -28,7 +29,7 @@ class HoughCircles_BGR_updated():
                 if time.time() - start_time >= 2:
                     # if esc key pressed, capture and save image
                     cv2.IMREAD_UNCHANGED  # read image file including alpha channel
-                    cv2.imwrite('/Users/ashton/Internship/AutoCellTester/captured_' + fileName + '.png', frame)
+                    cv2.imwrite('.../AutoCellTester/captured_' + fileName + '.png', frame)
                     cap.release()
 
             else:
@@ -38,7 +39,7 @@ class HoughCircles_BGR_updated():
     def pinDet(self, fileName):
         # Load captured image
         global src
-        src = cv2.imread('/Users/ashton/Internship/AutoCellTester/captured_' + fileName + '.png')
+        src = cv2.imread('.../AutoCellTester/captured_' + fileName + '.png')
         # src = cv2.getRotationMatrix2D((h, w), 90, 1)         # rotate image
 
         row_from = 0  # row = height
@@ -114,7 +115,7 @@ class HoughCircles_BGR_updated():
         '''
 
         # save image
-        cv2.imwrite('/Users/ashton/Internship/AutoCellTester/captured and detected_' + fileName + '.png', crop)
+        cv2.imwrite('.../AutoCellTester/captured and detected_' + fileName + '.png', crop)
 
         '''
         # show image
