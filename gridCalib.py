@@ -5,7 +5,7 @@ import pinDet_byGrid
 h = pinDet_byGrid.HoughCircles_HSV()
 
 
-src = cv2.imread('/Users/ashton/Internship/AutoCellTester/byGrid/captured_Snowman.dtm.png')
+src = cv2.imread('.../AutoCellTester/byGrid/captured_Snowman.dtm.png')
 
 pt1, pt2, pt3, pt4 = h.getCooCrop()
 print('crop coor ', pt1, pt2, pt3, pt4)
@@ -16,7 +16,7 @@ points = np.array([[pt1, pt2, pt3, pt4]]).astype(np.int32)
 cv2.drawContours(mask, [points], -1, (255, 255, 255), -1, cv2.LINE_AA)
 
 crop = cv2.bitwise_and(src, src, mask=mask)
-cv2.imwrite('/Users/ashton/Internship/AutoCellTester/cropped_Snowman.dtm.png', crop)
+cv2.imwrite('.../AutoCellTester/cropped_Snowman.dtm.png', crop)
 
 #exit()
 
@@ -33,7 +33,7 @@ M = cv2.getPerspectiveTransform(pts1,pts2)
 pers = cv2.warpPerspective(crop,M,(cols, rows))
 
 
-cv2.imwrite("/Users/ashton/Internship/AutoCellTester/persTrans_Snowman.dtm.png", pers)
+cv2.imwrite(".../AutoCellTester/persTrans_Snowman.dtm.png", pers)
 print('transformed img saved!')
 
 
@@ -89,5 +89,5 @@ for i in range(10):
     cell15pin1[1] += 89
 
 
-cv2.imwrite('/Users/ashton/Internship/AutoCellTester/croppedCalib_Snowman.dtm.png', pers)
+cv2.imwrite('.../AutoCellTester/croppedCalib_Snowman.dtm.png', pers)
 print('calibration done!')
