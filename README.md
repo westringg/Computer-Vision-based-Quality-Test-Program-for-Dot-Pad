@@ -8,19 +8,12 @@ This program tests Dot Pad, a tactile device for the blind developed by Dot Inco
 ![Code Structure](https://user-images.githubusercontent.com/68358806/142944256-3b265a89-ab53-4aac-b3c6-bed22b9acf1a.png)
 
 ## Files Descriptions
+-Alternative Approaches
+  - gridCalib: An alternative approach to manually get a fixed grid that fits every pin of Dot Pad, rather than automatically detecting it.
 
--Alternative Approaches: houghCricle_BGR_updated.py can be replaced by the following files
-  - gridCalib.py : An alternative approach to manually get a fixed grid that fits every pin of Dot Pad, rather than automatically detecting it.
-
-  - houghCircles_BGR_updated.py : An alternative appr
-
-houghCircles_HSV_8pic.py
-Update houghCircles_HSV_8pic.py
-17 minutes ago
-houghCircles_resize.py
-Update houghCircles_resize.py
-15 minutes ago
-main.py
-Update main.py
-15 minutes ago
-pattern_control.py
+  (houghCricle_BGR_updated.py can be replaced by the following files)
+  - houghCircles_HSV_8pic: Uses HSV instead of BGR as the colour system.
+  
+  - houghCircles_bySize: An alternative approach to distinguish each pin status(up/down) by its size appearing in the picture rather than its colour or brightness.
+  
+  - houghCircles_resize: An initial trial to improve the accuracy of detecting circles.
