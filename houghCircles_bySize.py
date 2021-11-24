@@ -22,7 +22,7 @@ class HoughCircles_HSV():
 
                 if time.time() - start_time >= 2:
                     cv2.IMREAD_UNCHANGED  # read image file including alpha channel
-                    cv2.imwrite('/Users/ashton/Internship/AutoCellTester/bySize/captured_%s.png' % fileName, frame)
+                    cv2.imwrite('.../AutoCellTester/bySize/captured_%s.png' % fileName, frame)
                     cap.release()
 
             else:
@@ -32,9 +32,9 @@ class HoughCircles_HSV():
     def getCooCrop(self):
         for i in range(1, 5):
             # load index img and original img
-            idx = cv2.imread('/Users/ashton/Internship/AutoCellTester/bySize/index%d.png' % i)
+            idx = cv2.imread('.../AutoCellTester/bySize/index%d.png' % i)
             grayIdx = cv2.cvtColor(idx, cv2.COLOR_BGR2GRAY)
-            ori = cv2.imread('/Users/ashton/Internship/AutoCellTester/bySize/captured_1.dtm.png')
+            ori = cv2.imread('.../AutoCellTester/bySize/captured_1.dtm.png')
             grayOri = cv2.cvtColor(ori, cv2.COLOR_BGR2GRAY)
 
             # create SIFT descriptor detector
@@ -96,7 +96,7 @@ class HoughCircles_HSV():
             print("accuracy: %d/%d(%.2f%%)" % (mask.sum(), mask.size, accuracy))
 
             # show result
-            cv2.imwrite('/Users/ashton/Internship/AutoCellTester/bySize/BFMatcher_SIFT_Homography%d.jpg' % i, res)
+            cv2.imwrite('.../AutoCellTester/bySize/BFMatcher_SIFT_Homography%d.jpg' % i, res)
 
 
         return pt1, pt2, pt3, pt4
@@ -105,7 +105,7 @@ class HoughCircles_HSV():
 
     def pinDet(self, fileName, pt1, pt2, pt3, pt4):
         global src
-        src = cv2.imread('/Users/ashton/Internship/AutoCellTester/bySize/captured_%s.png' % fileName)
+        src = cv2.imread('.../AutoCellTester/bySize/captured_%s.png' % fileName)
 
         global h, w, channel
         h, w, channel = src.shape  # size of image
@@ -125,7 +125,7 @@ class HoughCircles_HSV():
         blr = cv2.medianBlur(crop, 7)
         blrgray = cv2.cvtColor(blr, cv2.COLOR_BGR2GRAY)
         ret, glbThres = cv2.threshold(blrgray, 100, 240, cv2.THRESH_BINARY)
-        cv2.imwrite('/Users/ashton/Internship/AutoCellTester/bySize/glbThres_%s.png' % fileName, glbThres)
+        cv2.imwrite('.../AutoCellTester/bySize/glbThres_%s.png' % fileName, glbThres)
 
 
         global circles
@@ -178,4 +178,4 @@ class HoughCircles_HSV():
                 print('Down  ', i)
 
         # save final image
-        cv2.imwrite('/Users/ashton/Internship/AutoCellTester/bySize/captured and detected_%s.png' % fileName, crop)
+        cv2.imwrite('.../AutoCellTester/bySize/captured and detected_%s.png' % fileName, crop)
