@@ -1,4 +1,5 @@
 '''
+Reference
 https://076923.github.io/posts/Python-opencv-29/
 https://vmpo.tistory.com/35
 '''
@@ -26,7 +27,7 @@ class HoughCircles_HSV():
                 if k == 27:
                     # if esc key pressed, capture and save image
                     cv2.IMREAD_UNCHANGED  # read image file including alpha channel
-                    cv2.imwrite('/Users/ashton/Internship/AutoCellTester/captured.png', frame)
+                    cv2.imwrite('.../AutoCellTester/captured.png', frame)
                     cap.release()
                     cv2.destroyAllWindows()
 
@@ -37,7 +38,7 @@ class HoughCircles_HSV():
     def pinDet(self):
         # Load captured image
         global src
-        src = cv2.imread('/Users/ashton/Internship/AutoCellTester/captured.png')
+        src = cv2.imread('.../AutoCellTester/captured.png')
         # src = cv2.getRotationMatrix2D((h, w), 90, 1)         # rotate image
 
         row_from = 170  # row = height
@@ -101,7 +102,7 @@ class HoughCircles_HSV():
         '''
 
         # save image
-        cv2.imwrite('/Users/ashton/Internship/AutoCellTester/captured and detected.png', crop)
+        cv2.imwrite('.../AutoCellTester/captured and detected.png', crop)
 
         '''
         # show image
