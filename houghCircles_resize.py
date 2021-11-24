@@ -28,7 +28,7 @@ class HoughCircles_HSV():
 
                 if time.time() - start_time >= 2:
                     cv2.IMREAD_UNCHANGED  # read image file including alpha channel
-                    cv2.imwrite('/Users/ashton/Internship/AutoCellTester/byCir_resize/captured_%s.png'%fileName, frame)
+                    cv2.imwrite('.../AutoCellTester/byCir_resize/captured_%s.png'%fileName, frame)
                     cap.release()
 
             else:
@@ -39,9 +39,9 @@ class HoughCircles_HSV():
         # Get four coordinates to crop captured image
         for i in range(1, 5):
             # load index img and original img
-            idx = cv2.imread('/Users/ashton/Internship/AutoCellTester/byCir_resize/index%d.png' % i)
+            idx = cv2.imread('.../AutoCellTester/byCir_resize/index%d.png' % i)
             grayIdx = cv2.cvtColor(idx, cv2.COLOR_BGR2GRAY)
-            ori = cv2.imread('/Users/ashton/Internship/AutoCellTester/byCir_resize/captured_1.dtm.png')
+            ori = cv2.imread('.../AutoCellTester/byCir_resize/captured_1.dtm.png')
             grayOri = cv2.cvtColor(ori, cv2.COLOR_BGR2GRAY)
 
             # create SIFT descriptor detector
@@ -103,7 +103,7 @@ class HoughCircles_HSV():
             print("accuracy: %d/%d(%.2f%%)" % (mask.sum(), mask.size, accuracy))
 
             # show result
-            cv2.imwrite('/Users/ashton/Internship/AutoCellTester/byCir_resize/BFMatcher_SIFT_Homography%d.jpg' % i, res)
+            cv2.imwrite('.../AutoCellTester/byCir_resize/BFMatcher_SIFT_Homography%d.jpg' % i, res)
 
 
         return pt1, pt2, pt3, pt4
@@ -114,13 +114,13 @@ class HoughCircles_HSV():
         # Detect every location of pins
 
         # initialize .txt file
-        with open('/Users/ashton/Internship/AutoCellTester/writtenDtm/writtenDtm%s.txt' % fileName, 'w') as f:
+        with open('.../AutoCellTester/writtenDtm/writtenDtm%s.txt' % fileName, 'w') as f:
             f.write('')
 
 
         # load original image
         global src
-        src = cv2.imread('/Users/ashton/Internship/AutoCellTester/byCir_resize/captured_%s.png'% fileName)
+        src = cv2.imread('.../AutoCellTester/byCir_resize/captured_%s.png'% fileName)
 
 
         # crop image and show cropped img
@@ -132,7 +132,7 @@ class HoughCircles_HSV():
 
         crop = cv2.bitwise_and(src, src, mask=mask)
         crop = cv2.resize(crop, dsize=(0,0), fx=2.5, fy=2.5, interpolation=cv2.INTER_AREA)
-        cv2.imwrite('/Users/ashton/Internship/AutoCellTester/byCir_resize/captured and cropped_%s.png' % fileName, crop)
+        cv2.imwrite('.../AutoCellTester/byCir_resize/captured and cropped_%s.png' % fileName, crop)
 
         # size of the cropped image
         global h, w, channel
@@ -143,7 +143,7 @@ class HoughCircles_HSV():
         blr = cv2.medianBlur(crop, 7)
         blrgray = cv2.cvtColor(blr, cv2.COLOR_BGR2GRAY)
         ret, glbThres = cv2.threshold(blrgray, 50, 255, cv2.THRESH_BINARY)
-        cv2.imwrite('/Users/ashton/Internship/AutoCellTester/byCir_resize/glbThres_%s.png'%fileName, glbThres)
+        cv2.imwrite('.../AutoCellTester/byCir_resize/glbThres_%s.png'%fileName, glbThres)
 
 
         # HoughCircles(img, 검출 방법_2단계 허프변환, 해상도 비율, 최소 거리, 케니 엣지 thres 중 higher value, accumulator thres_높을수록 정확한 원 검출, minR, maxR
@@ -313,16 +313,16 @@ class HoughCircles_HSV():
 
                 # up인 pin은 초록색, down인 pin은 빨간색으로 표현
                 if hsv_val[2] >= thres_hsv and r >= thres_rad:  # 명도(Value)가 밝고 size가 큰 핀은 up으로 판별 (the brighter, the higher)
-                    with open('/Users/ashton/Internship/AutoCellTester/writtenDtm/writtenDtm%s.txt'%fileName, 'a') as f:
+                    with open('.../AutoCellTester/writtenDtm/writtenDtm%s.txt'%fileName, 'a') as f:
                         f.write('1')
 
                 else:  # down으로 판별
-                    with open('/Users/ashton/Internship/AutoCellTester/writtenDtm/writtenDtm%s.txt'%fileName, 'a') as f:
+                    with open('.../AutoCellTester/writtenDtm/writtenDtm%s.txt'%fileName, 'a') as f:
                         f.write('0')
 
             # txt file 줄 바꿈 (한 줄씩_60pin씩 작성)
-            with open('/Users/ashton/Internship/AutoCellTester/writtenDtm/writtenDtm%s.txt' % fileName, 'a') as f:
+            with open('.../AutoCellTester/writtenDtm/writtenDtm%s.txt' % fileName, 'a') as f:
                 f.write('\n')
 
         # save final image
-        cv2.imwrite('/Users/ashton/Internship/AutoCellTester/byCir_resize/captured and detected_%s.png'%fileName, crop)
+        cv2.imwrite('.../AutoCellTester/byCir_resize/captured and detected_%s.png'%fileName, crop)
